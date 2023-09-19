@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+        <TextView
+            android:id="@+id/tvProgramName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Program A"
+            />
+
+        <View
+            android:id="@+id/ProgramDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvProgramName"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEventList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="#00000000"
+            android:descendantFocusability="beforeDescendants"
+            app:layout_constraintTop_toBottomOf="@id/ProgramDivider"
+            tools:itemCount="1"
+            tools:listitem="@layout/event_item"
+            tools:visibility="visible"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
