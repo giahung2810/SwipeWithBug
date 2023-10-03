@@ -19,36 +19,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
 
-        setupSwipeRefreshLayout()
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    stateFlowSwipeEnabled.collect {
-                        // Disable Pull to Refresh on OfflineMode
-                        Log.e("Loading-Value - stateFlowSwipeEnabled", stateFlowSwipeEnabled.value.toString())
-                        binding.swipeRefreshLayout.isEnabled = it
-                    }
-                }
-            }
-        }
         setContentView(view)
     }
 
-    private fun setupSwipeRefreshLayout() {
-        // Keep default start offset and increase distance to one-seventh of screen height
-        val progressViewStartOffset = -binding.swipeRefreshLayout.progressCircleDiameter
-        val progressViewEndOffset = resources.displayMetrics.heightPixels / 7
-
-        binding.swipeRefreshLayout.setProgressViewOffset(
-            false, progressViewStartOffset, progressViewEndOffset
-        )
-        // The default value is 64, double it then convert to dips to increase animation duration
-        binding.swipeRefreshLayout.setDistanceToTriggerSync((128 * resources.displayMetrics.density).toInt())
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
-    }
 
     companion object {
         val stateFlowSwipeEnabled = MutableStateFlow(true)
